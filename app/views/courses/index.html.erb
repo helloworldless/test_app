@@ -1,18 +1,23 @@
 <h1>Seaching for <%= @search_term %></h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<!--<p>Find me in app/views/courses/index.html.erb</p>-->
 
-<table border="1">
-	<tr>
-		<th>Image</th>
-		<th>Name</th>
-		<th>Description</th>
-	</tr>
-	
-	<% @courses.each do |course| %>
-		<tr class=<%= cycle('even', 'odd') %>>
-			<td><%= image_tag(course["smallIcon"]) %></td>
-			<td><%= course["name"] %></td>
-			<td><%= course["shortDescription"] %></td>
+<% if @courses.nil? %>
+<p>No results found for '<%= @search_term %>'. Try another search term using <i>?looking_for=&#60;search_term&#62;</i></p>
+<% else %>
+	<table border="1">
+		<tr>
+			<th>Image</th>
+			<th>Name</th>
+			<th>Description</th>
 		</tr>
-		<% end %>
-</table>
+		
+		<% @courses.each do |course| %>
+			<tr class=<%= cycle('even', 'odd') %>>
+				<td><%= image_tag(course["smallIcon"]) %></td>
+				<td><%= course["name"] %></td>
+				<td><%= course["shortDescription"] %></td>
+			</tr>
+			<% end %>
+	</table>
+
+<% end %>
